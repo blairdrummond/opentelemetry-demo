@@ -149,13 +149,15 @@ if __name__ == "__main__":
     logger.addHandler(handler)
 
     catalog_addr = must_map_env('PRODUCT_CATALOG_SERVICE_ADDR')
-    pc_channel = grpc.insecure_channel(catalog_addr)
+    # pc_channel = grpc.insecure_channel(catalog_addr)
+    pc_channel = grpc.secure_channel(catalog_addr, grpc.ssl_channel_credentials())
     product_catalog_stub = demo_pb2_grpc.ProductCatalogServiceStub(pc_channel)
 
     ff_addr = os.environ.get('FEATURE_FLAG_GRPC_SERVICE_ADDR')
     feature_flag_stub = None
     if ff_addr is not None:
-        ff_channel = grpc.insecure_channel(ff_addr)
+        # ff_channel = grpc.insecure_channel(ff_addr)
+        ff_channel = grpc.secure_channel(ff_addr, grpc.ssl_channel_credentials())
         feature_flag_stub = demo_pb2_grpc.FeatureFlagServiceStub(ff_channel)
 
     # Create gRPC server

@@ -10,9 +10,14 @@ require "opentelemetry/exporter/otlp"
 require "opentelemetry/instrumentation/sinatra"
 
 set :port, ENV["EMAIL_SERVICE_PORT"]
+set :bind, ENV["EMAIL_SERVICE_HOST"]
 
 OpenTelemetry::SDK.configure do |c|
   c.use "OpenTelemetry::Instrumentation::Sinatra"
+end
+
+get "/" do
+  status 200
 end
 
 post "/send_order_confirmation" do

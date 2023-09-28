@@ -18,7 +18,7 @@ config :grpcbox,
         :unary_interceptor => {:otel_grpcbox_interceptor, :unary},
         :services => %{:"oteldemo.FeatureFlagService" => :ffs_service}
       },
-      :listen_opts => %{:port => grpc_port}
+      :listen_opts => %{:port => grpc_port, :ip => {0,0,0,0}}
     }
   ]
 
@@ -56,7 +56,8 @@ if config_env() == :prod do
   config :featureflagservice, FeatureflagserviceWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [
-      ip: {0, 0, 0, 0},
+      # ip: {0, 0, 0, 0},
+      ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
     secret_key_base: secret_key_base

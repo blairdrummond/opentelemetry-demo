@@ -84,7 +84,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     init_reqwest_tracing(init_tracer()?)?;
     info!("OTel pipeline created");
     let port = env::var("SHIPPING_SERVICE_PORT").expect("$SHIPPING_SERVICE_PORT is not set");
-    let addr = format!("0.0.0.0:{}", port).parse()?;
+    let host = env::var("SHIPPING_SERVICE_HOST").expect("$SHIPPING_SERVICE_HOST is not set");
+    let addr = format!("{}:{}", host, port).parse()?;
     info!("listening on {}", addr);
     let shipper = ShippingServer::default();
 

@@ -6,7 +6,8 @@ FROM node:18-alpine AS build
 
 WORKDIR /usr/src/app/
 
-COPY ./src/paymentservice/package*.json ./
+COPY ./src/paymentservice/package-lock.json ./
+COPY ./src/paymentservice/package.json ./
 
 RUN apk add --no-cache python3 make g++ && npm ci --omit=dev
 

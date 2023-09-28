@@ -1,12 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials, credentials } from '@grpc/grpc-js';
 import { ListProductsResponse, Product, ProductCatalogServiceClient } from '../../protos/demo';
 
 const { PRODUCT_CATALOG_SERVICE_ADDR = '' } = process.env;
 
-const client = new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, ChannelCredentials.createInsecure());
+const client = new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, credentials.createSsl() );
 
 const ProductCatalogGateway = () => ({
   listProducts() {

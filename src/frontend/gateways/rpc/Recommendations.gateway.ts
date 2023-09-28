@@ -1,12 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials, credentials } from '@grpc/grpc-js';
 import { ListRecommendationsResponse, RecommendationServiceClient } from '../../protos/demo';
 
 const { RECOMMENDATION_SERVICE_ADDR = '' } = process.env;
 
-const client = new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, ChannelCredentials.createInsecure());
+const client = new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, credentials.createSsl());
 
 const RecommendationsGateway = () => ({
   listRecommendations(userId: string, productIds: string[]) {

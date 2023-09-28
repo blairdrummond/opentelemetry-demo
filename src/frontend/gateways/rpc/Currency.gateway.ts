@@ -1,12 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials, credentials } from '@grpc/grpc-js';
 import { GetSupportedCurrenciesResponse, CurrencyServiceClient, Money } from '../../protos/demo';
 
 const { CURRENCY_SERVICE_ADDR = '' } = process.env;
 
-const client = new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, ChannelCredentials.createInsecure());
+const client = new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, credentials.createSsl());
 
 const CurrencyGateway = () => ({
   convert(from: Money, toCode: string) {

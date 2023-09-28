@@ -6,7 +6,7 @@ static_resources:
   listeners:
     - address:
         socket_address:
-          address: 0.0.0.0
+          address: ${ENVOY_HOST}
           port_value: ${ENVOY_PORT}
       filter_chains:
         - filters:
@@ -142,7 +142,7 @@ static_resources:
 admin:
   address:
     socket_address:
-      address: 0.0.0.0
+      address: ${ENVOY_HOST}
       port_value: 10000
 layered_runtime:
   layers:

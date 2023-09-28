@@ -1,12 +1,13 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials, credentials } from '@grpc/grpc-js';
 import { AdResponse, AdServiceClient } from '../../protos/demo';
 
 const { AD_SERVICE_ADDR = '' } = process.env;
 
-const client = new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure());
+const client = new AdServiceClient(AD_SERVICE_ADDR, credentials.createSsl() );
+// const client = new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure() );
 
 const AdGateway = () => ({
   listAds(contextKeys: string[]) {

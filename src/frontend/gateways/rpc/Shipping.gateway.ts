@@ -1,12 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials, credentials } from '@grpc/grpc-js';
 import { Address, CartItem, GetQuoteResponse, ShippingServiceClient } from '../../protos/demo';
 
 const { SHIPPING_SERVICE_ADDR = '' } = process.env;
 
-const client = new ShippingServiceClient(SHIPPING_SERVICE_ADDR, ChannelCredentials.createInsecure());
+const client = new ShippingServiceClient(SHIPPING_SERVICE_ADDR, credentials.createSsl());
 
 const AdGateway = () => ({
   getShippingCost(itemList: CartItem[], address: Address) {
