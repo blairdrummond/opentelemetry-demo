@@ -53,7 +53,16 @@ async fn request_quote(count: u32) -> Result<f64, Box<dyn std::error::Error>> {
     let mut reqbody = HashMap::new();
     reqbody.insert("numberOfItems", count);
 
-    let client = ClientBuilder::new(reqwest::Client::new())
+    // let client = reqwest::Client::builder()
+    //     .with(TracingMiddleware::<SpanBackendWithUrl>::new())
+    //     .use_rustls_tls()
+    //     .build();
+
+    let builder = reqwest::Client::builder()
+        .use_rustls_tls()
+        .build()?;
+
+    let client = reqwest_middleware::ClientBuilder::new(builder)
         .with(TracingMiddleware::<SpanBackendWithUrl>::new())
         .build();
 

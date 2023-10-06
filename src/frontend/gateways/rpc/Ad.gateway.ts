@@ -6,7 +6,7 @@ import { AdResponse, AdServiceClient } from '../../protos/demo';
 
 const { AD_SERVICE_ADDR = '' } = process.env;
 
-const client = new AdServiceClient(AD_SERVICE_ADDR, credentials.createSsl() );
+const client = new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createSsl() );
 // const client = new AdServiceClient(AD_SERVICE_ADDR, ChannelCredentials.createInsecure() );
 
 const AdGateway = () => ({

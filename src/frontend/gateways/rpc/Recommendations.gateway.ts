@@ -6,7 +6,7 @@ import { ListRecommendationsResponse, RecommendationServiceClient } from '../../
 
 const { RECOMMENDATION_SERVICE_ADDR = '' } = process.env;
 
-const client = new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, credentials.createSsl());
+const client = new RecommendationServiceClient(RECOMMENDATION_SERVICE_ADDR, ChannelCredentials.createSsl());
 
 const RecommendationsGateway = () => ({
   listRecommendations(userId: string, productIds: string[]) {

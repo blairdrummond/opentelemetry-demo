@@ -1,12 +1,12 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChannelCredentials, credentials } from '@grpc/grpc-js';
+import { ChannelCredentials } from '@grpc/grpc-js';
 import { Cart, CartItem, CartServiceClient, Empty } from '../../protos/demo';
 
 const { CART_SERVICE_ADDR = '' } = process.env;
 
-const client = new CartServiceClient(CART_SERVICE_ADDR, credentials.createSsl());
+const client = new CartServiceClient(CART_SERVICE_ADDR, ChannelCredentials.createSsl());
 
 const CartGateway = () => ({
   getCart(userId: string) {

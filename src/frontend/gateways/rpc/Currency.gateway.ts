@@ -6,7 +6,7 @@ import { GetSupportedCurrenciesResponse, CurrencyServiceClient, Money } from '..
 
 const { CURRENCY_SERVICE_ADDR = '' } = process.env;
 
-const client = new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, credentials.createSsl());
+const client = new CurrencyServiceClient(CURRENCY_SERVICE_ADDR, ChannelCredentials.createSsl());
 
 const CurrencyGateway = () => ({
   convert(from: Money, toCode: string) {

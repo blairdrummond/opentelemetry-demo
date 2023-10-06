@@ -6,7 +6,7 @@ import { Address, CartItem, GetQuoteResponse, ShippingServiceClient } from '../.
 
 const { SHIPPING_SERVICE_ADDR = '' } = process.env;
 
-const client = new ShippingServiceClient(SHIPPING_SERVICE_ADDR, credentials.createSsl());
+const client = new ShippingServiceClient(SHIPPING_SERVICE_ADDR, ChannelCredentials.createSsl());
 
 const AdGateway = () => ({
   getShippingCost(itemList: CartItem[], address: Address) {

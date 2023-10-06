@@ -6,7 +6,7 @@ import { ListProductsResponse, Product, ProductCatalogServiceClient } from '../.
 
 const { PRODUCT_CATALOG_SERVICE_ADDR = '' } = process.env;
 
-const client = new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, credentials.createSsl() );
+const client = new ProductCatalogServiceClient(PRODUCT_CATALOG_SERVICE_ADDR, ChannelCredentials.createSsl() );
 
 const ProductCatalogGateway = () => ({
   listProducts() {

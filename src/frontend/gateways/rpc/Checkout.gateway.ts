@@ -6,7 +6,7 @@ import { CheckoutServiceClient, PlaceOrderRequest, PlaceOrderResponse } from '..
 
 const { CHECKOUT_SERVICE_ADDR = '' } = process.env;
 
-const client = new CheckoutServiceClient(CHECKOUT_SERVICE_ADDR, credentials.createSsl() );
+const client = new CheckoutServiceClient(CHECKOUT_SERVICE_ADDR, ChannelCredentials.createSsl() );
 
 const CheckoutGateway = () => ({
   placeOrder(order: PlaceOrderRequest) {
